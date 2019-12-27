@@ -1,0 +1,51 @@
+---
+- name: Software Updates (C-0/6)
+  hosts: vnc_client
+
+  tasks:
+
+    - name: Create a .vnc directory (A-4/8)
+      file:
+        path: /home/{{ new_username }}/.vnc
+        state: directory
+        mode: 0755
+
+    - name: update and upgrade apt packages (C-1/10)
+      become: true
+      apt:
+        upgrade: yes
+        update_cache: yes
+
+    - name: install xfce4 (C-2/10)
+      become: true
+      apt:
+        name: xfce4
+        state: latest
+        update_cache: yes
+
+    - name: install xfce4-goodies (C-3/10)
+      become: true
+      apt:
+        name: xfce4-goodies
+        state: latest
+        update_cache: yes
+
+    - name: install tightnvcserver (C-4/10)
+      become: true
+      apt:
+        name: tightvncserver
+        state: latest
+        update_cache: yes
+
+    - name: copy xtartup file (C-5/10)
+      copy:
+        src:  ~/vnc_client/xstartup
+        dest: /home/{{ new_username }}/.vnc/xstartup
+        mode: u+rwx,g+rwx,o-rwx
+
+    - name: install firefox (C-6/10)
+      become: true
+      apt:
+        name: firefox
+        state: latest
+        update_cache: yes

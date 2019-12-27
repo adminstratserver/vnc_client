@@ -1,0 +1,9 @@
+[vnc_client]
+206.189.214.254
+
+[vnc_client:vars]
+new_username='tws002'
+file_privatekey='id_ansible'
+
+[local]
+local_machine ansible_connection=local ansible_host=localhost
