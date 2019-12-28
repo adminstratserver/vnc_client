@@ -1,10 +1,10 @@
 ---
-- name: Improve Server Security Settings (B-0/5)
+- name: Improve Server Security Settings (B-0/7)
   hosts: vnc_client
   gather_facts: false
 
   tasks:
-    - name: disable password authentication (B-1/5)
+    - name: disable password authentication (B-1/7)
       lineinfile:
         path: "{{ item }}"
         regex: ^(# *)?PasswordAuthentication
@@ -12,7 +12,7 @@
       loop:
         - /etc/ssh/sshd_config
 
-    - name: disable root login (B-2/5)
+    - name: disable root login (B-2/7)
       lineinfile:
         path: "{{ item }}"
         regex: ^(# *)?PermitRootLogin
@@ -20,27 +20,27 @@
       loop:
         - /etc/ssh/sshd_config
 
-    - name: restart sshd (B-3/4)
+    - name: restart sshd (B-3/7)
       service: name=sshd state=restarted
 
-    - name: Enable UFW and allow OpenSSH (B-4/5)
+    - name: Enable UFW and allow OpenSSH (B-4/7)
       ufw:
         rule: allow
         name: OpenSSH
         state: enabled
 
-    - name: Allow all access to tcp port 80 (B-5/5)
+    - name: Allow all access to tcp port 80 (B-5/7)
       ufw:
         rule: allow
         port: '80'
         proto: tcp
 
-    - name: Allow IB access (B-5/5)
+    - name: Allow IB access (B-6/7)
       ufw:
         rule: allow
         port: '7496'
 
-    - name: Allow VNC client access (B-6/5)
+    - name: Allow VNC client access (B-7/7)
       ufw:
         rule: allow
         port: '5901'

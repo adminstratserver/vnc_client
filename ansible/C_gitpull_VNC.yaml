@@ -1,0 +1,19 @@
+---
+- hosts: local
+  name: Enable SSH-Agent And Clone Files Into Remote Server (C-0/2)
+  tasks:
+
+  - name: enable ssh agent and add id_ansible (C-1/2)
+    shell: |
+      eval "$(ssh-agent)"
+      ssh-add ~/.ssh/id_ansible
+
+- hosts: vnc_client
+
+  tasks:
+
+  - name: clone repository from github (C-2/2)
+    git:
+      repo: '{{ git_repo }}'
+      dest: /home/{{ new_username }}/{{ dir_project }}
+      refspec: '+refs/pull/*:refs/heads/*'

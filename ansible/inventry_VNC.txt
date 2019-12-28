@@ -1,9 +1,12 @@
 [vnc_client]
-206.189.214.254
+167.172.112.50
 
 [vnc_client:vars]
 new_username='tws002'
 file_privatekey='id_ansible'
+dir_project='twsapps'
+git_repo='https://github.com/adminstratserver/vnc_client.git'
+
 
 [local]
 local_machine ansible_connection=local ansible_host=localhost
