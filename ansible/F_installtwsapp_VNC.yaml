@@ -1,0 +1,25 @@
+---
+- name: Install TWS Apps (F-0/4)
+  hosts: vnc_client
+
+  tasks:
+
+    - name: chmod tws-latest-linux-x86.sh (F-1/4)
+      become: true
+      shell: chmod u+x,g+x /home/{{ new_username }}/{{ dir_project }}/tws/tws-latest-linux-x64.sh
+
+    - name: chmod ibgateway-stable-standalone-linux-x64.sh (F-2/4)
+      become: true
+      shell: chmod u+x,g+x /home/{{ new_username }}/{{ dir_project }}/tws/ibgateway-stable-standalone-linux-x64.sh
+
+    - name: install tws (F-3/4)
+      expect:
+        command: "/home/{{ new_username }}/{{ dir_project }}/tws/tws-latest-linux-x64.sh"
+        responses:
+          'Yes [y], No [n, Enter]': '\n'
+
+    - name: install ibgateway (F-4/4)
+      expect:
+        command: "/home/{{ new_username }}/{{ dir_project }}/tws/ibgateway-stable-standalone-linux-x64.sh"
+        responses:
+          'Yes [y], No [n, Enter]': '\n'

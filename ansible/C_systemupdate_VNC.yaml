@@ -1,0 +1,60 @@
+---
+- name: System Files Updates (C-0/8)
+  hosts: vnc_client
+
+  tasks:
+
+    - name: update and upgrade apt packages (C-1/8)
+      become: true
+      apt:
+        upgrade: yes
+        update_cache: yes
+
+    - name: install xfce4 (C-2/8)
+      become: true
+      apt:
+        name: xfce4
+        state: latest
+        update_cache: yes
+
+    - name: install xfce4-goodies (C-3/8)
+      become: true
+      apt:
+        name: xfce4-goodies
+        state: latest
+        update_cache: yes
+
+    - name: install tightnvcserver (C-4/8)
+      become: true
+      apt:
+        name: tightvncserver
+        state: latest
+        update_cache: yes
+
+    - name: install firefox (C-5/8)
+      become: true
+      apt:
+        name: firefox
+        state: latest
+        update_cache: yes
+
+    - name: Install python3-pip (C-6/8)
+      become: true
+      apt:
+        name: python3-pip
+        state: latest
+        update_cache: yes
+
+    - name: Install python3-dev (C-7/8)
+      become: true
+      apt:
+        name: python3-dev
+        state: latest
+        update_cache: yes
+
+    - name: Install python-pexpect (C-8/8)
+      become: true
+      apt:
+        name: python-pexpect
+        state: latest
+        update_cache: yes

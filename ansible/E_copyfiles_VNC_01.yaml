@@ -1,9 +1,0 @@
----
-- name: Copy Updates (E-0/6)
-  hosts: vnc_client
-
-  tasks:
-
-  - name: copy xtartup file file (E-1/12)
-    become: true
-    command: cp /home/{{ new_username }}/{{ dir_project }}/vnc_client/ansible/xstartup /home/{{ new_username }}/.vnc/xstartup

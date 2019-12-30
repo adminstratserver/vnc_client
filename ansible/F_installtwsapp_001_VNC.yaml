@@ -1,0 +1,11 @@
+---
+- name: Install TWS Apps (F-0/4)
+  hosts: vnc_client
+
+  tasks:
+
+    - name: install ibgateway (F-4/4)
+      expect:
+        command: /home/{{ new_username }}/{{ dir_project }}/tws/ibgateway-stable-standalone-linux-x64.sh
+        responses:
+          'Yes [y], No [n, Enter]': '\n'
